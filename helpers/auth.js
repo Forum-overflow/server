@@ -51,11 +51,12 @@ module.exports = {
     verify(req.headers.token)
       .then(decoded => {
         return Reply.findOne({
-          _id: ObjectId(req.body.replyId),
+          _id: ObjectId('5ba8b21c6f1d335e9e1cf440'),
           owner: ObjectId(decoded._id)
         })
       })
       .then(reply => {
+        // console.log(reply)
         if (reply) {
           next()
         } else {
