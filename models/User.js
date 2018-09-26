@@ -11,8 +11,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    minlength: [6, `Password minimal 6 karakter`],
-    required: [true, 'Password harus di isi']
+    minlength: [6, `Password minimal 6 karakter`]
   },
   post: [{
     type: Schema.Types.ObjectId,

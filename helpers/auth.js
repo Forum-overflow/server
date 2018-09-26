@@ -51,7 +51,7 @@ module.exports = {
     verify(req.headers.token)
       .then(decoded => {
         return Reply.findOne({
-          _id: ObjectId('5ba8b21c6f1d335e9e1cf440'),
+          _id: ObjectId(req.body.replyId),
           owner: ObjectId(decoded._id)
         })
       })
@@ -107,7 +107,7 @@ module.exports = {
           next()
         } else {
           res.status(401).json({
-            message: 'Tidak bisa vote Sendiri'
+            message: 'Tidak bisa vote question sendiri'
           })
         }
       })

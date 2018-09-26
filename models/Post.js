@@ -8,6 +8,8 @@ const postSchema = new Schema({
   reply: [{ type: Schema.Types.ObjectId, ref: 'Reply' }],
   upvote: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   downvote: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+}, {
+  timestamps: true
 })
 
 const Post = mongoose.model('Post', postSchema)

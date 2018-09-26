@@ -7,7 +7,7 @@ const app = express()
 const db = mongoose.connection
 const port = process.env.PORT || 3000
 
-mongoose.connect('mongodb://localhost:27017/overflow')
+mongoose.connect(`mongodb://${process.env.USERDB}:${process.env.PASSWORDDB}@ds113873.mlab.com:13873/overflow`)
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

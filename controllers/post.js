@@ -2,11 +2,12 @@ const Post = require('../models/Post')
 const User = require('../models/User')
 const { verify } = require('../helpers/jwt')
 const ObjectId = require('mongoose').Types.ObjectId
+const Reply = require('../models/Reply')
 
 module.exports = {
   getAllPost (req, res) {
     Post
-      .find()
+      .find().populate('owner')
       .then(posts => {
         res.status(200).json(posts)
       })
@@ -42,17 +43,32 @@ module.exports = {
       })
   },
   getSpecificPost (req, res) {
+    let getPost
     Post
-      .findById(ObjectId(req.params.id))
+      .findById(ObjectId(req.params.id)).populate('owner')
       .populate('reply')
       .then(post => {
         if (post) {
-          res.status(200).json(post)
+          getPost = post
+          return Reply.find({
+            post: ObjectId(post._id)
+          }).populate('owner')
         }else {
+          return false
+        }
+      })
+      .then(replies => {
+        if (replies) {
+          getPost.reply = replies
+          res.status(200).json(getPost)
+        } else {
           res.status(404).json({
             message: 'Post Not Found'
           })
         }
+      })
+      .catch(err => {
+        res.status(500).json(err)
       })
   },
   editPost (req, res) {

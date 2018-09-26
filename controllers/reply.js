@@ -17,7 +17,8 @@ module.exports = {
         post = postDb
         return Reply.create({
           body: req.body.body,
-          owner: ObjectId(userId)
+          owner: ObjectId(userId),
+          post: ObjectId(post._id)
         })
       })
       .then(reply => {
