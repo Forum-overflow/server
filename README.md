@@ -1,12 +1,14 @@
 # API DOCUMENTATION
 
 route signin and signup
+
 | Route                 |  HTTP  | Desription                                           |
 | --------------------- |:------:| ---------------------------------------------------- |
 | /signup               | POST   | body: name, email, password                          |
 | /signin               | POST   | body: email, password                                |
 
 List of route Post
+
 | Route                 |  HTTP  | Desription                                           |
 | --------------------- |:------:| ---------------------------------------------------- |
 | /post                 | POST   | headers: token, body: title, description             |
@@ -19,6 +21,7 @@ List of route Post
 | /post/:id-Post        | DELETE | headers: token             |
 
 List of route Reply
+
 | Route                 |  HTTP  | Desription                                           |
 | --------------------- |:------:| ---------------------------------------------------- |
 | /reply                | POST   | headers: token, body: body, postId                   |
